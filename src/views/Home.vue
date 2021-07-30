@@ -60,7 +60,7 @@ export default {
   methods: {
     async fetchPosts() {
       const res = await fetch(
-        `http://localhost:3000/api/post/all?limit=${this.limit}&offset=${this.offset}`
+        `https://blog-backend-server.herokuapp.com/api/post/all?limit=${this.limit}&offset=${this.offset}`
       );
       const { data } = await res.json();
 

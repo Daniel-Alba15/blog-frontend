@@ -56,19 +56,23 @@ export default {
     async sendPost(e) {
       e.preventDefault();
 
-      const res = await fetch("http://localhost:3000/api/post/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "BEARER " + this.getToken()
-        },
-        body: JSON.stringify({
-          title: this.title,
-          content: this.content
-        })
-      });
+      const res = await fetch(
+        "https://blog-backend-server.herokuapp.com/api/post/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "BEARER " + this.getToken()
+          },
+          body: JSON.stringify({
+            title: this.title,
+            content: this.content
+          })
+        }
+      );
       const data = await res.json();
       console.log(data);
+      alert("Publicado!");
     }
   }
 };

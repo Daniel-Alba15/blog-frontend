@@ -45,7 +45,7 @@ export default {
     ...mapGetters(["getToken", "getUser"]),
     async createComment() {
       const result = await fetch(
-        "http://localhost:3000/api/post/comment/create",
+        "https://blog-backend-server.herokuapp.com/api/post/comment/create",
         {
           method: "POST",
           headers: {

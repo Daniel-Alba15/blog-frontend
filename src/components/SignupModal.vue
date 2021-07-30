@@ -42,6 +42,17 @@
                 Your password must be 8-20 characters long.
               </div>
             </div>
+            <div class="mb-3">
+              <label for="inputPassword2" class="form-label"
+                >Confirm password</label
+              >
+              <input
+                v-model="password2"
+                type="password"
+                class="form-control"
+                id="inputPassword2"
+              />
+            </div>
             <div class="modal-footer">
               <button
                 type="submit"
@@ -53,43 +64,6 @@
             </div>
           </div>
         </form>
-        <!-- <form @submit="login">
-          <div class="modal-body">
-            <label for="username" class="m-auto">Username:</label>
-            <input
-              class="d-block m-auto rounded-3"
-              v-model="username"
-              type="text"
-              placeholder="username"
-              name="username"
-            />
-            <label for="password" class="m-auto">Password:</label>
-
-            <input
-              class="d-block m-auto mt-3 rounded"
-              v-model="password"
-              type="password"
-              placeholder="password"
-              name="password"
-            />
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-            >
-              Save changes
-            </button>
-          </div>
-        </form> -->
       </div>
     </div>
   </div>
@@ -101,26 +75,35 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      password2: ""
     };
   },
   methods: {
     async login(e) {
       e.preventDefault();
       if (this.username != "" && this.password != "") {
-        const response = await fetch("http://localhost:3000/api/user/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password
-          })
-        });
+        if (this.password === this.password2) {
+          const response = await fetch(
+            "https://blog-backend-server.herokuapp.com/api/user/signup",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                username: this.username,
+                password: this.password
+              })
+            }
+          );
 
-        const data = await response.json();
-        console.log(data);
+          if (response.status == 409) {
+            alert("Username already in use");
+          }
+        } else {
+          alert("Passwords does not match");
+        }
       } else {
         alert("Llene todos los campos");
       }

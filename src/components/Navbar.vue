@@ -24,7 +24,7 @@
             <li class="nav-item me-3">
               <Button
                 data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                data-bs-target="#loginModal"
                 text="Log in"
               />
               <LoginModal />

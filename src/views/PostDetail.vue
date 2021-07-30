@@ -29,13 +29,13 @@ export default {
   methods: {
     ...mapGetters(["getUser"]),
     async fetchPost(slug) {
-      const res = await fetch(`http://localhost:3000/api/post/${slug}`);
+      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/${slug}`);
       const { data } = await res.json();
 
       return data;
     },
     async fetchComments(id) {
-      const res = await fetch(`http://localhost:3000/api/post/comment/${id}`);
+      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/comment/${id}`);
       const { data } = await res.json();
 
       return data;
