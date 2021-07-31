@@ -1,7 +1,8 @@
 <template>
   <div class="container my-4">
-    <form action="" @submit="sendPost">
+    <form @submit="sendPost">
       <input type="text" v-model="title" placeholder="title" />
+      <input type="text" v-model="image" placeholder="image url" />
       <editor
         v-model="content"
         :apiKey="apiKey"
@@ -14,6 +15,8 @@
             'print preview anchor insertdatetime media',
             'paste code help wordcount table'
           ],
+          image_dimensions: false,
+          image_class_list: [{ title: 'Responsive', value: 'container' }],
           toolbar:
             'undo redo | formatselect | bold italic | \
         alignleft aligncenter alignright | \
@@ -45,6 +48,7 @@ export default {
     return {
       title: "",
       content: "",
+      image: "",
       apiKey: process.env.VUE_APP_API_KEY
     };
   },
@@ -66,12 +70,12 @@ export default {
           },
           body: JSON.stringify({
             title: this.title,
-            content: this.content
+            content: this.content,
+            image: this.image
           })
         }
       );
       const data = await res.json();
-      console.log(data);
       alert("Publicado!");
     }
   }

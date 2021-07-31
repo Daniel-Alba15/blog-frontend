@@ -44,8 +44,6 @@ export default {
   async mounted() {
     this.post = await this.fetchPost(this.$route.params.id);
     this.comments = await this.fetchComments(this.post[0].post_id);
-    console.log(this.comments);
-    console.log(this.post[0].post_id);
   }
 };
 </script>

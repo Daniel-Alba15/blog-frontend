@@ -1,7 +1,15 @@
 <template>
   <div class="container mt-3">
-    <h1 class="text-center">{{ post.title }}</h1>
-    <span class="mt-5" v-html="postEscaped"></span>
+    <h1 class="text-center" v-html="this.$func.escape(post.title)"></h1>
+    <p>
+      <i>Publicado: {{ this.$func.formatDate(post.created_at) }}</i>
+    </p>
+    <p class="text-center">
+      <img class="container" :src="post.image" :alt="post.title" />
+    </p>
+    <div class="my-5">
+      <div class="container" v-html="postEscaped"></div>
+    </div>
   </div>
 </template>
 

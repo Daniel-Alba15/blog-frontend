@@ -6,6 +6,11 @@ export const func = {
             .replace(/&gt;/g, ">")
             .replace(/&quot;/g, '"')
             .replace(/&#039;/g, "'")
-            .replace(/&#x2F;/g, "/");
+            .replace(/&#x2F;/g, "/")
+            .replace(/&#x27;/g, "'");
+    },
+    formatDate: (date) => {
+        const newDate = new Date(date);
+        return newDate.toLocaleDateString("es-CO");
     }
 }

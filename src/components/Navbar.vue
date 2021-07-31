@@ -21,7 +21,7 @@
           id="navbarNav"
         >
           <ul v-if="!userIsLoggedIn" class="navbar-nav">
-            <li class="nav-item me-3">
+            <li class="nav-item me-3 mb-2">
               <Button
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
@@ -38,8 +38,8 @@
               <SignupModal />
             </li>
           </ul>
-          <ul v-else class="navbar-nav align-items-center">
-            <li class="nav-item me-3">
+          <ul v-else class="navbar-nav align-items-baseline">
+            <li class="nav-item me-3 mb-2">
               <span v-html="getAvatar" class="h-25"></span>
             </li>
             <li class="nav-item">

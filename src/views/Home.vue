@@ -3,15 +3,21 @@
     <main v-if="posts.length > 0" class="container">
       <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-          <h1 class="display-4 fst-italic">
-            {{ posts[0].title }}
-          </h1>
-          <p class="lead my-3" v-html="this.$func.escape(posts[0].content)"></p>
+          <h1
+            class="display-4 fst-italic"
+            v-html="this.$func.escape(posts[0].title)"
+          ></h1>
+          <p
+            class="lead my-3"
+            v-html="
+              this.$func.escape(posts[0].content).substring(0, 150) + '...'
+            "
+          ></p>
           <p class="lead mb-0">
             <router-link
               class="text-white fw-bold"
               :to="'/post/' + posts[0].slug"
-              >Continue reading...</router-link
+              >Continuar leyendo...</router-link
             >
           </p>
         </div>
@@ -77,7 +83,6 @@ export default {
     async disminuir() {
       if (this.offset > 1) {
         this.offset -= 7;
-        console.log("esto despues de disminuirlo ", this.offset);
       }
 
       const response = await this.fetchPosts();
