@@ -1,12 +1,16 @@
 <template>
   <div>
-    <button type="button" class="btn btn-dark btn-md rounded-1 rounded-lg">{{ text }}</button>
+    <button type="button" class="btn btn-dark btn-md rounded-1 rounded-lg">
+      {{ text }}
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: "Button",
-  props: ["text"]
+  props: {
+    text: String
+  }
 };
 </script>

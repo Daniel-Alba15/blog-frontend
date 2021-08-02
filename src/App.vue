@@ -18,3 +18,15 @@ export default {
   }
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap");
+h1 {
+  font-size: 3em;
+}
+p,
+li {
+  font-size: 1.3em;
+  font-family: "Mulish", sans-serif;
+}
+</style>

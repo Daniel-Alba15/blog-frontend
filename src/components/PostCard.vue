@@ -5,14 +5,14 @@
         class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
       >
         <div class="col p-4 d-flex flex-column position-static">
-          <h4 class="mb-0">{{ post.title }}</h4>
+          <h3 class="mb-0" v-html="post.title"></h3>
           <div class="mb-1 text-muted">
             {{ this.$func.formatDate(post.created_at) }}
           </div>
-          <p
+          <div
             class="card-text mb-auto"
-            v-html="this.$func.escape(post.content).substring(0, 150) + '...'"
-          ></p>
+            v-html="this.$func.unescape(post.content).substring(0, 160) + '...'"
+          ></div>
           <router-link :to="'/post/' + post.slug" class="stretched-link"
             >Continuar leyendo</router-link
           >

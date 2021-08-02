@@ -69,19 +69,21 @@ export default {
   methods: {
     ...mapMutations(["setUser", "setToken", "setAvatar"]),
     async login(e) {
-      console.log("acaaa");
       e.preventDefault();
       if (this.username != "" && this.password != "") {
-        const response = await fetch("https://blog-backend-server.herokuapp.com/api/user/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password
-          })
-        });
+        const response = await fetch(
+          "https://blog-backend-server.herokuapp.com/api/user/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username: this.username,
+              password: this.password
+            })
+          }
+        );
 
         const { user, token, avatar } = await response.json();
 

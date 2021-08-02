@@ -1,7 +1,11 @@
 <template>
   <div v-if="post.length > 0">
     <PostDetailCard :post="post[0]" />
-    <CommentBox v-if="getUser()" :postId="post[0].post_id" />
+    <CommentBox
+      @comment-added="comments = fetchComments(post[0].post_id)"
+      v-if="getUser()"
+      :postId="post[0].post_id"
+    />
     <CommentsList :comments="comments" />
   </div>
 </template>
@@ -29,21 +33,25 @@ export default {
   methods: {
     ...mapGetters(["getUser"]),
     async fetchPost(slug) {
-      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/${slug}`);
+      const res = await fetch(
+        `https://blog-backend-server.herokuapp.com/api/post/${slug}`
+      );
       const { data } = await res.json();
 
-      return data;
+      this.post = data;
     },
     async fetchComments(id) {
-      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/comment/${id}`);
+      const res = await fetch(
+        `https://blog-backend-server.herokuapp.com/api/post/comment/${id}`
+      );
       const { data } = await res.json();
 
-      return data;
+      this.comments = data;
     }
   },
   async mounted() {
-    this.post = await this.fetchPost(this.$route.params.id);
-    this.comments = await this.fetchComments(this.post[0].post_id);
+    await this.fetchPost(this.$route.params.id);
+    await this.fetchComments(this.post[0].post_id);
   }
 };
 </script>

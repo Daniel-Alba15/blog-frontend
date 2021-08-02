@@ -77,20 +77,8 @@ export default {
   computed: {
     ...mapGetters(["userIsLoggedIn", "getAvatar"])
   },
-  beforeCreate() {
-    console.log("beforeCreate");
-  },
   mounted() {
     this.avatar = localStorage.getItem("avatar");
-  },
-  beforeUpdate() {
-    console.log("beforeUpdate");
-  },
-  updated() {
-    console.log("updated");
-  },
-  beforeMount() {
-    console.log("beforeMount");
   }
 };
 </script>

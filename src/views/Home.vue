@@ -5,12 +5,12 @@
         <div class="col-md-6 px-0">
           <h1
             class="display-4 fst-italic"
-            v-html="this.$func.escape(posts[0].title)"
+            v-html="this.$func.unescape(posts[0].title)"
           ></h1>
           <p
             class="lead my-3"
             v-html="
-              this.$func.escape(posts[0].content).substring(0, 150) + '...'
+              this.$func.unescape(posts[0].content).substring(0, 150) + '...'
             "
           ></p>
           <p class="lead mb-0">

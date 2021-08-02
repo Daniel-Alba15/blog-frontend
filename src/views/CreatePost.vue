@@ -16,7 +16,7 @@
             'paste code help wordcount table'
           ],
           image_dimensions: false,
-          image_class_list: [{ title: 'Responsive', value: 'container' }],
+          image_class_list: [{ title: 'Responsive', value: 'container w-75' }],
           toolbar:
             'undo redo | formatselect | bold italic | \
         alignleft aligncenter alignright | \
@@ -75,7 +75,6 @@ export default {
           })
         }
       );
-      const data = await res.json();
       alert("Publicado!");
     }
   }

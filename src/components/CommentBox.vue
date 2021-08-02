@@ -15,7 +15,7 @@
         cols="50"
         rows="3"
       ></textarea>
-      <button type="submit">Aceptar</button>
+      <button class="btn btn-success" type="submit">Aceptar</button>
     </form>
   </div>
 </template>
@@ -43,7 +43,8 @@ export default {
   },
   methods: {
     ...mapGetters(["getToken", "getUser"]),
-    async createComment() {
+    async createComment(e) {
+      e.preventDefault();
       const result = await fetch(
         "https://blog-backend-server.herokuapp.com/api/post/comment/create",
         {
@@ -58,6 +59,8 @@ export default {
           })
         }
       );
+      this.content = "";
+      this.$emit("comment-added");
     }
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-3">
-    <h1 class="text-center" v-html="this.$func.escape(post.title)"></h1>
+    <h1 class="text-center" v-html="this.$func.unescape(post.title)"></h1>
     <p>
       <i>Publicado: {{ this.$func.formatDate(post.created_at) }}</i>
     </p>
@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    this.postEscaped = this.$func.escape(this.post.content);
+    this.postEscaped = this.$func.unescape(this.post.content);
   }
 };
 </script>
