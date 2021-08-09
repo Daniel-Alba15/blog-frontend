@@ -13,7 +13,9 @@
             class="card-text mb-auto"
             v-html="this.$func.unescape(post.content).substring(0, 160) + '...'"
           ></div>
-          <router-link :to="'/post/' + post.slug" class="stretched-link"
+          <router-link
+            :to="'/post/' + post.post_id + '/' + post.slug"
+            class="stretched-link"
             >Continuar leyendo</router-link
           >
         </div>

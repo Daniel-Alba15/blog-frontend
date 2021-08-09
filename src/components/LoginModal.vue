@@ -10,7 +10,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <h5 class="modal-title" id="loginModalLabel">Iniciar sesión</h5>
           <button
             type="button"
             class="btn-close"
@@ -21,7 +21,7 @@
         <form @submit="login" class="w-50 m-auto my-2">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username</label>
+              <label for="inputUsername" class="form-label">Usuario</label>
               <input
                 v-model="username"
                 type="text"
@@ -30,7 +30,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="inputPassword" class="form-label">Password</label>
+              <label for="inputPassword" class="form-label">Contraseña</label>
               <input
                 v-model="password"
                 type="password"
@@ -44,7 +44,7 @@
                 class="btn btn-primary m-auto"
                 data-bs-dismiss="modal"
               >
-                Submit
+                Aceptar
               </button>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default {
       e.preventDefault();
       if (this.username != "" && this.password != "") {
         const response = await fetch(
-          "https://blog-backend-server.herokuapp.com/api/user/login",
+          process.env.VUE_APP_BASE_URL + "user/login",
           {
             method: "POST",
             headers: {
@@ -85,7 +85,14 @@ export default {
           }
         );
 
-        const { user, token, avatar } = await response.json();
+        const data = await response.json();
+
+        if (!data.success) {
+          console.log(data.error);
+          return;
+        }
+
+        const { user, token, avatar } = data.data;
 
         this.setUser(user);
         this.setToken(token);

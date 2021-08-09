@@ -46,7 +46,7 @@ export default {
     async createComment(e) {
       e.preventDefault();
       const result = await fetch(
-        "https://blog-backend-server.herokuapp.com/api/post/comment/create",
+        process.env.VUE_APP_BASE_URL + "post/comment/create",
         {
           method: "POST",
           headers: {

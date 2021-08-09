@@ -32,25 +32,29 @@ export default {
   },
   methods: {
     ...mapGetters(["getUser"]),
-    async fetchPost(slug) {
-      const res = await fetch(
-        `https://blog-backend-server.herokuapp.com/api/post/${slug}`
-      );
+    async fetchPost(id, slug) {
+      const res = await fetch(process.env.VUE_APP_BASE_URL + `post/${id}`);
       const { data } = await res.json();
 
       this.post = data;
     },
     async fetchComments(id) {
       const res = await fetch(
-        `https://blog-backend-server.herokuapp.com/api/post/comment/${id}`
+        process.env.VUE_APP_BASE_URL + `post/comments/${id}`
       );
-      const { data } = await res.json();
+      const data = await res.json();
 
-      this.comments = data;
+      if (!data.success) {
+        console.log(data.error);
+        return;
+      }
+
+      this.comments = data.data;
     }
   },
   async mounted() {
-    await this.fetchPost(this.$route.params.id);
+    console.log(this.$route.params.id, this.$route.params.slug);
+    await this.fetchPost(this.$route.params.id, this.$route.params.slug);
     await this.fetchComments(this.post[0].post_id);
   }
 };

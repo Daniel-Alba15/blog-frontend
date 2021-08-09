@@ -10,7 +10,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="signupModalLabel">Sign up</h5>
+          <h5 class="modal-title" id="signupModalLabel">Registrarse</h5>
           <button
             type="button"
             class="btn-close"
@@ -21,7 +21,7 @@
         <form @submit="login" class="w-50 m-auto my-4">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="inputUsername" class="form-label">Username</label>
+              <label for="inputUsername" class="form-label">Usuario</label>
               <input
                 v-model="username"
                 type="text"
@@ -30,7 +30,7 @@
               />
             </div>
             <div class="mb-3">
-              <label for="inputPassword" class="form-label">Password</label>
+              <label for="inputPassword" class="form-label">Contraseña</label>
               <input
                 v-model="password"
                 type="password"
@@ -39,12 +39,12 @@
                 aria-describedby="passwordHelp"
               />
               <div id="passwordHelp" class="form-text">
-                Your password must be 8-20 characters long.
+                La contraseña debe tener una longitud entre 8 y 20 caractéres.
               </div>
             </div>
             <div class="mb-3">
               <label for="inputPassword2" class="form-label"
-                >Confirm password</label
+                >Confirmar contraseña</label
               >
               <input
                 v-model="password2"
@@ -59,7 +59,7 @@
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
               >
-                Submit
+                Aceptar
               </button>
             </div>
           </div>
@@ -84,8 +84,8 @@ export default {
       e.preventDefault();
       if (this.username != "" && this.password != "") {
         if (this.password === this.password2) {
-          const response = await fetch(
-            "https://blog-backend-server.herokuapp.com/api/user/signup",
+          const res = await fetch(
+            process.env.VUE_APP_BASE_URL + "user/signup",
             {
               method: "POST",
               headers: {
@@ -98,11 +98,11 @@ export default {
             }
           );
 
-          if (response.status == 409) {
-            alert("Username already in use");
+          if (res.status == 409) {
+            alert("El usuario ya existe");
           }
         } else {
-          alert("Passwords does not match");
+          alert("Las contraseñas no coinciden");
         }
       } else {
         alert("Llene todos los campos");

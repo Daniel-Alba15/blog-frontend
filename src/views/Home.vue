@@ -16,7 +16,7 @@
           <p class="lead mb-0">
             <router-link
               class="text-white fw-bold"
-              :to="'/post/' + posts[0].slug"
+              :to="'/post/' + posts[0].post_id + '/' + posts[0].slug"
               >Continuar leyendo...</router-link
             >
           </p>
@@ -65,12 +65,18 @@ export default {
   },
   methods: {
     async fetchPosts() {
-      const res = await fetch(
-        `https://blog-backend-server.herokuapp.com/api/post/all?limit=${this.limit}&offset=${this.offset}`
-      );
-      const { data } = await res.json();
+      const url =
+        process.env.VUE_APP_BASE_URL +
+        `post/all?limit=${this.limit}&offset=${this.offset}`;
+      const res = await fetch(url);
+      const data = await res.json();
 
-      return data;
+      if (!data.success) {
+        console.log("An error has ocurred");
+        return;
+      }
+
+      return data.data;
     },
     async aumentar() {
       this.offset += 7;

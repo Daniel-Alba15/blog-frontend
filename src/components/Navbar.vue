@@ -25,7 +25,7 @@
               <Button
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
-                text="Log in"
+                text="Iniciar sesión"
               />
               <LoginModal />
             </li>
@@ -33,7 +33,7 @@
               <Button
                 data-bs-toggle="modal"
                 data-bs-target="#signupModal"
-                text="Sing up"
+                text="Registrarse"
               />
               <SignupModal />
             </li>
@@ -43,7 +43,7 @@
               <span v-html="getAvatar" class="h-25"></span>
             </li>
             <li class="nav-item">
-              <router-link to="/logout"><Button text="Log out"/></router-link>
+              <router-link to="/logout"><Button text="Salir"/></router-link>
             </li>
           </ul>
         </div>
