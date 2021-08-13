@@ -72,7 +72,7 @@ export default {
       e.preventDefault();
       if (this.username != "" && this.password != "") {
         const response = await fetch(
-          process.env.VUE_APP_BASE_URL + "user/login",
+          "https://blog-backend-server.herokuapp.com/api/user/login",
           {
             method: "POST",
             headers: {

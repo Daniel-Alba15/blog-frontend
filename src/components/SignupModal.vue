@@ -84,8 +84,7 @@ export default {
       e.preventDefault();
       if (this.username != "" && this.password != "") {
         if (this.password === this.password2) {
-          const res = await fetch(
-            process.env.VUE_APP_BASE_URL + "user/signup",
+          const res = await fetch("https://blog-backend-server.herokuapp.com/api/user/signup",
             {
               method: "POST",
               headers: {

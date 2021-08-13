@@ -60,7 +60,7 @@ export default {
     async sendPost(e) {
       e.preventDefault();
 
-      const res = await fetch(process.env.VUE_APP_BASE_URL + "post/create", {
+      const res = await fetch("https://blog-backend-server.herokuapp.com/api/post/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

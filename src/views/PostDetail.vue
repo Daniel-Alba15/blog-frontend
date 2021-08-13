@@ -33,15 +33,13 @@ export default {
   methods: {
     ...mapGetters(["getUser"]),
     async fetchPost(id, slug) {
-      const res = await fetch(process.env.VUE_APP_BASE_URL + `post/${id}`);
+      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/${id}`);
       const { data } = await res.json();
 
       this.post = data;
     },
     async fetchComments(id) {
-      const res = await fetch(
-        process.env.VUE_APP_BASE_URL + `post/comments/${id}`
-      );
+      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/comments/${id}`);
       const data = await res.json();
 
       if (!data.success) {

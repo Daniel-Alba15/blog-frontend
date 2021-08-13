@@ -65,10 +65,7 @@ export default {
   },
   methods: {
     async fetchPosts() {
-      const url =
-        process.env.VUE_APP_BASE_URL +
-        `post/all?limit=${this.limit}&offset=${this.offset}`;
-      const res = await fetch(url);
+      const res = await fetch(`https://blog-backend-server.herokuapp.com/api/post/all?limit=${this.limit}&offset=${this.offset}`);
       const data = await res.json();
 
       if (!data.success) {
